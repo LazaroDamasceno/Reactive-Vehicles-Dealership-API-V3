@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 import org.springframework.stereotype.Service
 
 @Service
-internal class SuvRegistrationServiceImpl: CarRegistrationService() {
+class SuvRegistrationServiceImpl: CarRegistrationService() {
 
     override suspend fun register(requestDto: @Valid CarRegistrationRequestDto): CarResponseDto {
         return withContext(Dispatchers.IO) {
