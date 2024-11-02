@@ -1,6 +1,5 @@
-package com.api.v3.cars
+package com.api.v3.cars.domain
 
-import com.api.v3.cars.domain.Car
 import com.api.v3.vehicles.domain.Vehicle
 
 class SUV(vehicle: Vehicle): Car(vehicle, "SUV") {
