@@ -1,6 +1,6 @@
-package com.api.v3
+package com.api.v3.customers
 
-import com.api.v3.persons.dtos.PersonModificationRequestDto
+import com.api.v3.persons.dtos.PersonRegistrationRequestDto
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -8,27 +8,28 @@ import org.springframework.test.web.reactive.server.WebTestClient
 import java.time.LocalDate
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class CustomerModificationTest {
+internal class CustomerRegistrationTest {
 
     @Autowired
     private lateinit var webTestClient: WebTestClient
 
-    val requestDto = PersonModificationRequestDto(
+    val requestDto = PersonRegistrationRequestDto(
         "Leo",
-        "Silva",
-        "Santos Jr.",
-        "jr@leosanros.com",
+        "",
+        "Santos",
+        "123456789",
+        "leosantos@gmail.com",
         LocalDate.parse("2000-12-12"),
-        "St. Dennis, Paris",
-        "cis male",
-        "0987654321"
+        "St. Dennis",
+        "male",
+        "1234567890"
     )
 
     @Test
     fun testSuccessfulRegistration() {
         webTestClient
-            .put()
-            .uri("api/v3/customers/123456789")
+            .post()
+            .uri("api/v3/customers")
             .bodyValue(requestDto)
             .exchange()
             .expectStatus().is2xxSuccessful()
@@ -37,8 +38,8 @@ internal class CustomerModificationTest {
     @Test
     fun testUnsuccessfulRegistration() {
         webTestClient
-            .put()
-            .uri("api/v3/customers/123456788")
+            .post()
+            .uri("api/v3/customers")
             .bodyValue(requestDto)
             .exchange()
             .expectStatus().is5xxServerError()
