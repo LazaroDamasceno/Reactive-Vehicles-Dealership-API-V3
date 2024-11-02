@@ -1,5 +1,7 @@
-package com.api.v3.cars
+package com.api.v3.cars.domain
 
+import com.api.v3.cars.utils.PlateNumberGenerator
+import com.api.v3.cars.utils.VinGenerator
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
@@ -7,7 +9,7 @@ import java.time.ZoneId
 import java.util.UUID
 
 @Document
-class Car {
+open class Car {
 
     @Id
     var id: UUID = UUID.randomUUID()
@@ -15,27 +17,18 @@ class Car {
     var model: String
     var manufacturingYear: Int
     var price: Double
+    var type: String
     var vin: String = VinGenerator.generate()
     var plateNumber: String = PlateNumberGenerator.generate()
     var createdAt: LocalDateTime = LocalDateTime.now()
     var createdAtZone: ZoneId = ZoneId.systemDefault()
 
-    private constructor(make: String, model: String, manufacturingYear: Int, price: Double) {
-        this.make = make
-        this.model = model
-        this.manufacturingYear = manufacturingYear
+    internal constructor(type: String, price: Double, manufacturingYear: Int, model: String, make: String) {
+        this.type = type
         this.price = price
-    }
-
-    companion object {
-        fun of(requestDto: CarRegistrationRequestDto): Car {
-            return Car(
-                requestDto.make,
-                requestDto.model,
-                requestDto.manufacturingYear,
-                requestDto.price
-            )
-        }
+        this.manufacturingYear = manufacturingYear
+        this.model = model
+        this.make = make
     }
 
 }
