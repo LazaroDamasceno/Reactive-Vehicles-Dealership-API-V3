@@ -26,7 +26,9 @@ internal class VehicleRegistrationServiceImpl: VehicleRegistrationService {
                         && v.manufacturingYear == requestDto.manufacturingYear
                 }
                 .singleOrNull()
-            if (existingVehicle != null) existingVehicle
+            if (existingVehicle != null) {
+                return@withContext existingVehicle
+            }
             val vehicle = Vehicle.of(requestDto)
             vehicleRepository.save(vehicle)
         }
