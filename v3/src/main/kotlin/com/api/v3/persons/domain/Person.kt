@@ -14,33 +14,55 @@ class Person {
 
     @Id
     var id: UUID = UUID.randomUUID()
-    lateinit var firstName: String
+    var firstName: String
     var middleName: String? = null
-    lateinit var lastName: String
-    lateinit var ssn: String
-    lateinit var birthDate: LocalDate
-    lateinit var email: String
-    lateinit var address: String
-    lateinit var gender: String
-    lateinit var phoneNumber: String
+    var lastName: String
+    var ssn: String
+    var birthDate: LocalDate
+    var email: String
+    var address: String
+    var gender: String
+    var phoneNumber: String
     var createdAt: LocalDateTime = LocalDateTime.now()
     var createdAtZone: ZoneId = ZoneId.systemDefault()
     var modifiedAt: LocalDateTime? = null
     var modifiedAtZone: ZoneId? = null
 
+    private constructor(
+        firstName: String,
+        middleName: String?,
+        lastName: String,
+        ssn: String,
+        birthDate: LocalDate,
+        email: String,
+        address: String,
+        gender: String,
+        phoneNumber: String
+    ) {
+        this.firstName = firstName
+        this.middleName = middleName
+        this.lastName = lastName
+        this.ssn = ssn
+        this.birthDate = birthDate
+        this.email = email
+        this.address = address
+        this.gender = gender
+        this.phoneNumber = phoneNumber
+    }
+
     companion object {
         fun of(requestDto: PersonRegistrationRequestDto): Person {
-            val person = Person()
-            person.firstName = requestDto.firstName
-            person.middleName = requestDto.middleName
-            person.lastName = requestDto.lastName
-            person.ssn = requestDto.ssn
-            person.birthDate = requestDto.birthDate
-            person.email = requestDto.email
-            person.address = requestDto.address
-            person.gender = requestDto.gender
-            person.phoneNumber = requestDto.phoneNumber
-            return person
+            return Person(
+                requestDto.firstName,
+                requestDto.middleName,
+                requestDto.lastName,
+                requestDto.ssn,
+                requestDto.birthDate,
+                requestDto.email,
+                requestDto.address,
+                requestDto.gender,
+                requestDto.phoneNumber
+            )
         }
     }
 
