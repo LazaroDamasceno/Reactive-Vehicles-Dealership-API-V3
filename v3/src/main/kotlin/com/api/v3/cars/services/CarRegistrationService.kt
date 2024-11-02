@@ -10,6 +10,6 @@ abstract class CarRegistrationService {
     @Autowired
     protected lateinit var carRepository: CarRepository
 
-    protected abstract suspend fun register(requestDto: CarRegistrationRequestDto): CarResponseDto
+    abstract suspend fun register(requestDto: CarRegistrationRequestDto): CarResponseDto
 
 }
