@@ -1,4 +1,4 @@
-package com.api.v3.cars.domain
+package com.api.v3.cars.domain.superclass
 
 import com.api.v3.cars.utils.CarPlateNumberGenerator
 import com.api.v3.cars.utils.CarVinGenerator

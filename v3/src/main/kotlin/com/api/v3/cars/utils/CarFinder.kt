@@ -1,11 +1,10 @@
 package com.api.v3.cars.utils
 
-import com.api.v3.cars.domain.Car
-import com.api.v3.cars.domain.CarRepository
+import com.api.v3.cars.domain.superclass.Car
+import com.api.v3.cars.domain.superclass.CarRepository
 import com.api.v3.cars.exceptions.CarNotFoundException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.singleOrNull
 import kotlinx.coroutines.withContext
 import org.springframework.beans.factory.annotation.Autowired
