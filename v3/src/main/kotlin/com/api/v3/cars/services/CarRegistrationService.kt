@@ -1,14 +1,14 @@
 package com.api.v3.cars.services
 
-import com.api.v3.cars.domain.superclass.CarRepository
-import com.api.v3.vehicles.dtos.VehicleResponseDto
-import org.springframework.beans.factory.annotation.Autowired
+import com.api.v3.cars.dtos.CarResponseDto
+import com.api.v3.vehicles.dtos.VehicleRegistrationDto
 
-abstract class CarRegistrationService {
+interface CarRegistrationService {
 
-    @Autowired
-    protected lateinit var carRepository: CarRepository
-
-    abstract suspend fun register(requestDto: VehicleResponseDto)
+    suspend fun registerSedan(requestDto: VehicleRegistrationDto): CarResponseDto
+    suspend fun registerSUV(requestDto: VehicleRegistrationDto): CarResponseDto
+    suspend fun registerCrossover(requestDto: VehicleRegistrationDto): CarResponseDto
+    suspend fun registerElectric(requestDto: VehicleRegistrationDto): CarResponseDto
+    suspend fun registerHybrid(requestDto: VehicleRegistrationDto): CarResponseDto
 
 }
