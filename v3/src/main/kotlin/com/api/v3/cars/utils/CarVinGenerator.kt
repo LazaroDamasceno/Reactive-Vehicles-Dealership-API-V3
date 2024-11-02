@@ -1,4 +1,4 @@
-package com.api.v3.cars
+package com.api.v3.cars.utils
 
 class CarVinGenerator {
 

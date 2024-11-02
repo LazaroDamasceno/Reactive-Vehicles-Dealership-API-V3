@@ -1,5 +1,7 @@
-package com.api.v3.cars
+package com.api.v3.cars.domain
 
+import com.api.v3.cars.utils.CarPlateNumberGenerator
+import com.api.v3.cars.utils.CarVinGenerator
 import com.api.v3.vehicles.domain.Vehicle
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -8,7 +10,7 @@ import java.time.ZoneId
 import java.util.UUID
 
 @Document
-class Car {
+open class Car {
 
     @Id
     var id: UUID = UUID.randomUUID()
@@ -19,7 +21,7 @@ class Car {
     var createdAt: LocalDateTime = LocalDateTime.now()
     var createdAtZone: ZoneId = ZoneId.systemDefault()
 
-    constructor(vehicle: Vehicle, type: String) {
+    protected constructor(vehicle: Vehicle, type: String) {
         this.vehicle = vehicle
         this.type = type
     }
