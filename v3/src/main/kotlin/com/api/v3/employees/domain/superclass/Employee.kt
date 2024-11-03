@@ -1,4 +1,4 @@
-package com.api.v3.employees.domain
+package com.api.v3.employees.domain.superclass
 
 import com.api.v3.employees.utils.EmployeeIdGenerator
 import com.api.v3.persons.domain.Person
