@@ -14,11 +14,13 @@ open class Employee {
     @Id
     var id: UUID = UUID.randomUUID()
     var employeeId: String = EmployeeIdGenerator.generate()
+    var job: String
     var person: Person
     var createdAt: LocalDateTime = LocalDateTime.now()
     var createdAtZone: ZoneId = ZoneId.systemDefault()
 
-    protected constructor(person: Person) {
+    protected constructor(job: String, person: Person) {
         this.person = person
+        this.job = job
     }
 }
