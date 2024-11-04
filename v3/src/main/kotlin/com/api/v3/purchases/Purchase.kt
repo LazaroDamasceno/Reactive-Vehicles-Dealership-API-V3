@@ -14,19 +14,21 @@ data class Purchase(
     var customer: Customer,
     var salesperson: Employee,
     var car: Car,
-    var finalPrice: Double,
+    var discount: Double,
+    var price: Double,
     var createdAt: LocalDateTime,
     var createdAtZone: ZoneId
 ) {
 
     companion object {
-        fun of(customer: Customer, salesperson: Employee, car: Car): Purchase {
+        fun of(customer: Customer, salesperson: Employee, car: Car, discount: Double): Purchase {
             return Purchase(
                 UUID.randomUUID(),
                 customer,
                 salesperson,
                 car,
-                car.vehicle.price * (1 + Constants.salesTax),
+                discount,
+                (car.vehicle.price * (1 - discount)) * (1 + Constants.salesTax),
                 LocalDateTime.now(),
                 ZoneId.systemDefault()
             )
