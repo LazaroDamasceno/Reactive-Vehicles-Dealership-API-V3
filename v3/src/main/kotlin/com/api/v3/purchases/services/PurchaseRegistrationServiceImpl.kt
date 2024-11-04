@@ -1,5 +1,6 @@
 package com.api.v3.purchases.services
 
+import com.api.v3.cars.services.CarSellingService
 import com.api.v3.cars.utils.CarFinderUtil
 import com.api.v3.customers.utils.CustomerFinderUtil
 import com.api.v3.employees.utils.EmployeeFinderUtil
@@ -27,6 +28,9 @@ internal class PurchaseRegistrationServiceImpl: PurchaseRegistrationService {
     private lateinit var carFinderUtil: CarFinderUtil
 
     @Autowired
+    private lateinit var carSellingService: CarSellingService
+
+    @Autowired
     private lateinit var purchaseRepository: PurchaseRepository
 
     override suspend fun register(requestDto: @Valid PurchaseRegistrationRequestDto): PurchaseResponseDto {
@@ -34,7 +38,8 @@ internal class PurchaseRegistrationServiceImpl: PurchaseRegistrationService {
             val customer = customerFinderUtil.find(requestDto.ssn)
             val salesperson = employeeFinderUtil.find(requestDto.employeeId)
             val car = carFinderUtil.find(requestDto.vin)
-            val purchase = Purchase.of(customer, salesperson, car, requestDto.discount)
+            val soldCar = carSellingService.markASold(car)
+            val purchase = Purchase.of(customer, salesperson, soldCar, requestDto.discount)
             val savedPurchase = purchaseRepository.save(purchase)
             PurchaseResponseMapper.map(savedPurchase)
         }
