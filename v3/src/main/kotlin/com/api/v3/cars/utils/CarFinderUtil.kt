@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
-class CarFinder {
+class CarFinderUtil {
 
     @Autowired
     private lateinit var carRepository: CarRepository
