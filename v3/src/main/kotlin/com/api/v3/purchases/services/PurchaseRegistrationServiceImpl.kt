@@ -6,6 +6,7 @@ import com.api.v3.employees.utils.EmployeeFinderUtil
 import com.api.v3.purchases.domain.Purchase
 import com.api.v3.purchases.domain.PurchaseRepository
 import com.api.v3.purchases.dtos.PurchaseRegistrationRequestDto
+import com.api.v3.purchases.dtos.PurchaseResponseDto
 import com.api.v3.purchases.utils.PurchaseResponseMapper
 import jakarta.validation.Valid
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +29,7 @@ internal class PurchaseRegistrationServiceImpl: PurchaseRegistrationService {
     @Autowired
     private lateinit var purchaseRepository: PurchaseRepository
 
-    override suspend fun register(requestDto: @Valid PurchaseRegistrationRequestDto) {
+    override suspend fun register(requestDto: @Valid PurchaseRegistrationRequestDto): PurchaseResponseDto {
         return withContext(Dispatchers.IO) {
             val customer = customerFinderUtil.find(requestDto.ssn)
             val salesperson = employeeFinderUtil.find(requestDto.employeeId)
