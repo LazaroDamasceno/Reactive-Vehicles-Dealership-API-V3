@@ -18,7 +18,7 @@ data class Purchase(
     var salesperson: Employee,
     var car: Car,
     var discount: Double,
-    var price: Double,
+    var finalPrice: Double,
     var createdAt: LocalDateTime,
     var createdAtZone: ZoneId
 ) {
@@ -32,7 +32,7 @@ data class Purchase(
                 salesperson,
                 car,
                 discount,
-                (car.vehicle.price * (1 - discount)) * (1 + Constants.salesTax),
+                ((car.vehicle.price * (1 - discount)) * (1 + Constants.salesTax)),
                 LocalDateTime.now(),
                 ZoneId.systemDefault()
             )
