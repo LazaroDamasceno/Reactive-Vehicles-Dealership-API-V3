@@ -20,10 +20,17 @@ open class Car {
     var plateNumber: String = CarPlateNumberGenerator.generate()
     var createdAt: LocalDateTime = LocalDateTime.now()
     var createdAtZone: ZoneId = ZoneId.systemDefault()
+    lateinit var soldAt: LocalDateTime
+    lateinit var soldAtZone: ZoneId
 
     protected constructor(vehicle: Vehicle, type: String) {
         this.vehicle = vehicle
         this.type = type
+    }
+
+    fun markAsSold() {
+        soldAt = LocalDateTime.now()
+        soldAtZone = ZoneId.systemDefault()
     }
 
 }
