@@ -1,6 +1,7 @@
 package com.api.v3.cards.controllers
 
 import com.api.v3.cards.dtos.CardOwnerDataDto
+import com.api.v3.cards.dtos.CardResponseDto
 import com.api.v3.cards.services.CardDeletionService
 import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,12 +19,12 @@ class CardController {
     private lateinit var deletionService: CardDeletionService
 
     @PostMapping("credit-card")
-    suspend fun registerCreditCard(@RequestBody requestDto: @Valid CardOwnerDataDto) {
+    suspend fun registerCreditCard(@RequestBody requestDto: @Valid CardOwnerDataDto): CardResponseDto {
         return registrationService.registerCreditCard(requestDto)
     }
 
     @PostMapping("debit-card")
-    suspend fun registerDebitCard(@RequestBody requestDto: @Valid CardOwnerDataDto) {
+    suspend fun registerDebitCard(@RequestBody requestDto: @Valid CardOwnerDataDto): CardResponseDto {
         return registrationService.registerDebitCard(requestDto)
     }
 

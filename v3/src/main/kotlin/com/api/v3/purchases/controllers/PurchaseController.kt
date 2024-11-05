@@ -1,6 +1,7 @@
 package com.api.v3.purchases.controllers
 
 import com.api.v3.purchases.dtos.PurchaseRegistrationRequestDto
+import com.api.v3.purchases.dtos.PurchaseResponseDto
 import com.api.v3.purchases.services.PurchaseRegistrationService
 import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,7 +18,7 @@ class PurchaseController {
     private lateinit var registrationService: PurchaseRegistrationService
 
     @PostMapping
-    suspend fun register(@RequestBody requestDto: @Valid PurchaseRegistrationRequestDto) {
+    suspend fun register(@RequestBody requestDto: @Valid PurchaseRegistrationRequestDto): PurchaseResponseDto {
         return registrationService.register(requestDto)
     }
 

@@ -4,6 +4,7 @@ import com.api.v3.cards.domain.subclasses.CreditCard
 import com.api.v3.cards.domain.subclasses.DebitCard
 import com.api.v3.cards.domain.superclass.CardRepository
 import com.api.v3.cards.dtos.CardOwnerDataDto
+import com.api.v3.cards.dtos.CardResponseDto
 import com.api.v3.cards.utils.CardResponseMapper
 import jakarta.validation.Valid
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +18,7 @@ internal class CardRegistrationServiceImpl: CardRegistrationService {
     @Autowired
     private lateinit var cardRepository: CardRepository
 
-    override suspend fun registerCreditCard(requestDto: @Valid CardOwnerDataDto) {
+    override suspend fun registerCreditCard(requestDto: @Valid CardOwnerDataDto): CardResponseDto {
         return withContext(Dispatchers.IO) {
             val card = CreditCard.of(requestDto)
             val savedCard = cardRepository.save(card)
@@ -25,7 +26,7 @@ internal class CardRegistrationServiceImpl: CardRegistrationService {
         }
     }
 
-    override suspend fun registerDebitCard(requestDto: @Valid CardOwnerDataDto) {
+    override suspend fun registerDebitCard(requestDto: @Valid CardOwnerDataDto): CardResponseDto {
         return withContext(Dispatchers.IO) {
             val card = DebitCard.of(requestDto)
             val savedCard = cardRepository.save(card)
