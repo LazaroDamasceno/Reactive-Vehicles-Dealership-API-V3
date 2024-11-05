@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class PersonModificationServiceImpl: PersonModificationService {
+internal class PersonModificationServiceImpl: PersonModificationService {
 
     @Autowired
     private lateinit var personRepository: PersonRepository
