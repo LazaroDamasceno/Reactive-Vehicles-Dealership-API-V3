@@ -26,10 +26,10 @@ internal class EmployeeModificationTest {
 
     @Test
     fun testSuccessfulRegistration() {
-        val employeeId = ""
+        val employeeId = "0742716"
         webTestClient
             .put()
-            .uri("api/v3/employees/employeeId")
+            .uri("api/v3/employees/${employeeId}")
             .bodyValue(requestDto)
             .exchange()
             .expectStatus().is2xxSuccessful()
@@ -37,10 +37,10 @@ internal class EmployeeModificationTest {
 
     @Test
     fun testUnsuccessfulRegistration() {
-        val employeeId = ""
+        val employeeId = "0742715"
         webTestClient
             .put()
-            .uri("api/v3/employees/employeeId")
+            .uri("api/v3/employees/${employeeId}")
             .bodyValue(requestDto)
             .exchange()
             .expectStatus().is5xxServerError()

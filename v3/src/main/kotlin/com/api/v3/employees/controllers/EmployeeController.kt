@@ -16,6 +16,7 @@ class EmployeeController : EmployeeModificationService {
     @Autowired
     private lateinit var registrationService: EmployeeRegistrationService
 
+    @Autowired
     private lateinit var modificationService: EmployeeModificationService
 
     @PostMapping("salesperson")
