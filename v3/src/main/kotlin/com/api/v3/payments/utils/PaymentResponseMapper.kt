@@ -1,6 +1,7 @@
-package com.api.v3.payments
+package com.api.v3.payments.utils
 
 import com.api.v3.cards.utils.CardResponseMapper
+import com.api.v3.payments.dtos.PaymentResponseDto
 import com.api.v3.payments.domain.Payment
 import java.time.ZonedDateTime
 

@@ -1,4 +1,4 @@
-package com.api.v3.payments
+package com.api.v3.payments.dtos
 
 import com.api.v3.cards.dtos.CardResponseDto
 import java.math.BigInteger

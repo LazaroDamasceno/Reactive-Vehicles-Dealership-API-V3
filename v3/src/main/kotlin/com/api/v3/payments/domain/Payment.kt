@@ -2,7 +2,7 @@ package com.api.v3.payments.domain
 
 import com.api.v3.cards.domain.superclass.Card
 import com.api.v3.cars.domain.superclass.Car
-import com.api.v3.payments.PaymentOrderNumberGenerator
+import com.api.v3.payments.utils.PaymentOrderNumberGenerator
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.math.BigInteger
