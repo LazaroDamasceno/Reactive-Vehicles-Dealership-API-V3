@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class CarRegistrationServiceImpl: CarRegistrationService {
+internal class CardRegistrationServiceImpl: CardRegistrationService {
 
     @Autowired
     private lateinit var cardRepository: CardRepository
