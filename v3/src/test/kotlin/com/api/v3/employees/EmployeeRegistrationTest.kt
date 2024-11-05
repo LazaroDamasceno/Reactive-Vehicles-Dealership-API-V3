@@ -8,7 +8,7 @@ import org.springframework.test.web.reactive.server.WebTestClient
 import java.time.LocalDate
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class SalespersonRegistrationTest {
+internal class EmployeeRegistrationTest {
 
     @Autowired
     private lateinit var webTestClient: WebTestClient

@@ -1,7 +1,6 @@
 package com.api.v3.employees
 
 import com.api.v3.persons.dtos.PersonModificationRequestDto
-import com.api.v3.persons.dtos.PersonRegistrationRequestDto
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -9,7 +8,7 @@ import org.springframework.test.web.reactive.server.WebTestClient
 import java.time.LocalDate
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class SalespersonModificationTest {
+internal class EmployeeModificationTest {
 
     @Autowired
     private lateinit var webTestClient: WebTestClient
