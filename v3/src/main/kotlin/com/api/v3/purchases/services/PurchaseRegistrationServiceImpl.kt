@@ -1,9 +1,11 @@
 package com.api.v3.purchases.services
 
+import com.api.v3.cards.utils.CardFinderUtil
 import com.api.v3.cars.services.CarSellingService
 import com.api.v3.cars.utils.CarFinderUtil
 import com.api.v3.customers.utils.CustomerFinderUtil
 import com.api.v3.employees.utils.EmployeeFinderUtil
+import com.api.v3.payments.services.PaymentRegistrationService
 import com.api.v3.purchases.domain.Purchase
 import com.api.v3.purchases.domain.PurchaseRepository
 import com.api.v3.purchases.dtos.PurchaseRegistrationRequestDto
@@ -33,13 +35,21 @@ internal class PurchaseRegistrationServiceImpl: PurchaseRegistrationService {
     @Autowired
     private lateinit var purchaseRepository: PurchaseRepository
 
+    @Autowired
+    private lateinit var paymentRegistrationService: PaymentRegistrationService
+
+    @Autowired
+    private lateinit var cardFinderUtil: CardFinderUtil
+
     override suspend fun register(requestDto: @Valid PurchaseRegistrationRequestDto): PurchaseResponseDto {
         return withContext(Dispatchers.IO) {
             val customer = customerFinderUtil.find(requestDto.ssn)
             val salesperson = employeeFinderUtil.find(requestDto.employeeId)
             val car = carFinderUtil.find(requestDto.vin)
             val soldCar = carSellingService.markASold(car)
-            val purchase = Purchase.of(customer, salesperson, soldCar, requestDto.discount)
+            val card = cardFinderUtil.find(requestDto.cardNumber)
+            val payment = paymentRegistrationService.register(soldCar, card)
+            val purchase = Purchase.of(customer, salesperson, soldCar, requestDto.discount, payment)
             val savedPurchase = purchaseRepository.save(purchase)
             PurchaseResponseMapper.map(savedPurchase)
         }
