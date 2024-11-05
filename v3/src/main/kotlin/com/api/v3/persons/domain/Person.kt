@@ -75,8 +75,8 @@ class Person {
 
     fun modify(requestDto: PersonModificationRequestDto) {
         firstName = requestDto.firstName
-        middleName = requestDto.firstName
-        lastName = requestDto.firstName
+        middleName = requestDto.middleName
+        lastName = requestDto.lastName
         email = requestDto.email
         birthDate = requestDto.birthDate
         address = requestDto.address
