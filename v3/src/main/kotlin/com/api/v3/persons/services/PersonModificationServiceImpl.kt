@@ -27,7 +27,7 @@ internal class PersonModificationServiceImpl: PersonModificationService {
     ): Person {
         return withContext(Dispatchers.IO) {
             val auditTrail = PersonAuditTrail.of(person)
-            val savedAuditTrail = personAuditTrailRepository.save(auditTrail)
+            personAuditTrailRepository.save(auditTrail)
             person.modify(requestDto)
             personRepository.save(person)
         }
