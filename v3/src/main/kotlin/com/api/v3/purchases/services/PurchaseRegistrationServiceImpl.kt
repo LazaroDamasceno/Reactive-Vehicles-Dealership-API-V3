@@ -1,6 +1,7 @@
 package com.api.v3.purchases.services
 
 import com.api.v3.cards.utils.CardFinderUtil
+import com.api.v3.cars.exceptions.UnavailableCarException
 import com.api.v3.cars.services.CarSellingService
 import com.api.v3.cars.utils.CarFinderUtil
 import com.api.v3.customers.utils.CustomerFinderUtil
@@ -46,6 +47,7 @@ internal class PurchaseRegistrationServiceImpl: PurchaseRegistrationService {
             val customer = customerFinderUtil.find(requestDto.ssn)
             val salesperson = employeeFinderUtil.find(requestDto.employeeId)
             val car = carFinderUtil.find(requestDto.vin)
+            if (car.soldAt != null) throw UnavailableCarException()
             val soldCar = carSellingService.markASold(car)
             val card = cardFinderUtil.find(requestDto.cardNumber)
             val payment = paymentRegistrationService.register(soldCar, card)
