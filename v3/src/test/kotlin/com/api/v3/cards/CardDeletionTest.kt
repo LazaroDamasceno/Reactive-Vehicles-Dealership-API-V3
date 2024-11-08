@@ -18,9 +18,10 @@ internal class CardDeletionTest {
     @Test
     @Order(1)
     fun testSuccessfulDeletion1() {
+        val cardNumber = ""
         webTestClient
             .delete()
-            .uri("api/v3/cards/0243723997710800")
+            .uri("api/v3/cards/$cardNumber")
             .exchange()
             .expectStatus().is2xxSuccessful()
     }
@@ -28,9 +29,10 @@ internal class CardDeletionTest {
     @Test
     @Order(2)
     fun testUnsuccessfulDeletion1() {
+        val cardNumber = ""
         webTestClient
             .delete()
-            .uri("api/v3/cards/0243723997710800")
+            .uri("api/v3/cards/$cardNumber")
             .exchange()
             .expectStatus().is5xxServerError()
     }
