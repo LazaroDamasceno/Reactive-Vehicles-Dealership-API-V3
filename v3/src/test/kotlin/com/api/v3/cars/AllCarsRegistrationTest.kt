@@ -43,7 +43,7 @@ internal class AllCarsRegistrationTest {
     fun testSuccessfulRegistration3() {
         webTestClient
             .post()
-            .uri("api/v3/cars/electric")
+            .uri("api/v3/cars/hybrid")
             .bodyValue(requestDto)
             .exchange()
             .expectStatus().is2xxSuccessful()
