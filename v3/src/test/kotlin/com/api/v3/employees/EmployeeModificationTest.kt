@@ -26,7 +26,7 @@ internal class EmployeeModificationTest {
 
     @Test
     fun testSuccessfulRegistration() {
-        val employeeId = "0742716"
+        val employeeId = ""
         webTestClient
             .put()
             .uri("api/v3/employees/${employeeId}")
@@ -37,7 +37,7 @@ internal class EmployeeModificationTest {
 
     @Test
     fun testUnsuccessfulRegistration() {
-        val employeeId = "0742715"
+        val employeeId = ""
         webTestClient
             .put()
             .uri("api/v3/employees/${employeeId}")
