@@ -2,9 +2,12 @@ package com.api.v3.cars.controllers
 
 import com.api.v3.cars.dtos.CarResponseDto
 import com.api.v3.cars.services.CarRegistrationService
+import com.api.v3.cars.services.CarRetrievalService
 import com.api.v3.vehicles.dtos.VehicleRegistrationDto
 import jakarta.validation.Valid
+import kotlinx.coroutines.flow.Flow
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -16,6 +19,9 @@ class CarController {
     
     @Autowired
     private lateinit var registrationService: CarRegistrationService
+
+    @Autowired
+    private lateinit var carRetrievalService: CarRetrievalService
 
     @PostMapping("sedan")
     suspend fun registerSedan(@RequestBody requestDto: @Valid VehicleRegistrationDto): CarResponseDto {
@@ -40,6 +46,11 @@ class CarController {
     @PostMapping("hybrid")
     suspend fun registerHybrid(@RequestBody requestDto: @Valid VehicleRegistrationDto): CarResponseDto {
         return registrationService.registerHybrid(requestDto)
+    }
+
+     @GetMapping
+    suspend fun findAll(): Flow<CarResponseDto> {
+        return carRetrievalService.findAll()
     }
 
 }
