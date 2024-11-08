@@ -13,7 +13,7 @@ import java.util.UUID
 @Document
 data class Payment(
     @Id var id: UUID,
-    var orderNumber: BigInteger,
+    var orderNumber: String,
     var car: Car,
     var card: Card,
     var createdAt: LocalDateTime,

@@ -7,14 +7,13 @@ import com.api.v3.payments.domain.Payment
 import com.api.v3.purchases.utils.PurchaseOrderNumberGenerator
 import com.api.v3.utils.Constants
 import org.springframework.data.annotation.Id
-import java.math.BigInteger
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.UUID
 
 data class Purchase(
     @Id var id: UUID,
-    var orderNumber: BigInteger,
+    var orderNumber: String,
     var customer: Customer,
     var salesperson: Employee,
     var car: Car,
